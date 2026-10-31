@@ -1,0 +1,8 @@
+services:
+  web:
+    build: .
+    container_name: hello-nobigonj-website
+    restart: always
+    ports:
+      - "3015:80"
+
