@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
-import { Header } from './components/common/Header'
-import { Footer } from './components/common/Footer'
+import { TopBar } from './components/common/Header/TopBar'
+import { Navbar } from './components/common/Navbar/Navbar'
+import { Footer } from './components/common/Footer/Footer'
 import { SearchModal } from './components/common/SearchModal'
 import { MobileBottomNav } from './components/common/MobileBottomNav'
 import { InformationModal } from './components/common/InformationModal'
@@ -28,11 +29,12 @@ export const App: React.FC = () => {
   }, [setIsSearchOpen])
 
   return (
-    <div style={{ minHeight: '100vh', display: 'flex', flexDirection: 'column' }}>
-      <Header />
+    <div className="app" style={{ minHeight: '100vh', display: 'flex', flexDirection: 'column' }}>
+      <TopBar />
+      <Navbar />
 
       <main style={{ flex: 1 }}>
-        {currentView === 'home' && <HomePage />}
+        {currentView === 'home' && <HomePage onOpenModal={(t) => setInfoModalType(t)} />}
         {currentView === 'detail' && <NewsDetail />}
         {currentView === 'category' && <CategoryPage />}
         {currentView === 'bookmarks' && <BookmarksPage />}
@@ -63,3 +65,5 @@ export const App: React.FC = () => {
     </div>
   )
 }
+
+export default App

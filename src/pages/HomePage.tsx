@@ -1,40 +1,32 @@
 import React from 'react'
-import { HeroBanner } from '../components/news/HeroBanner'
-import { CategoryPills } from '../components/news/CategoryPills'
-import { LatestNewsList } from '../components/news/LatestNewsList'
-import { FeaturedNewsCards } from '../components/news/FeaturedNewsCards'
-import { WeatherWidget } from '../components/news/WeatherWidget'
-import { PopularNewsWidget } from '../components/news/PopularNewsWidget'
-import { NewsletterWidget } from '../components/news/NewsletterWidget'
-import { MoreNewsSection } from '../components/news/MoreNewsSection'
+import { HeroBanner } from '../components/home/HeroBanner/HeroBanner'
+import { StatsSection } from '../components/home/StatsSection/StatsSection'
+import { TopPlaces } from '../components/home/TopPlaces/TopPlaces'
+import { NewsSection } from '../components/home/NewsSection/NewsSection'
+import { Sidebar } from '../components/home/Sidebar/Sidebar'
+import { CategoryNews } from '../components/home/CategoryNews/CategoryNews'
 
-export const HomePage: React.FC = () => {
+interface HomePageProps {
+  onOpenModal?: (type: 'about' | 'ads' | 'privacy' | 'contact') => void
+}
+
+export const HomePage: React.FC<HomePageProps> = ({ onOpenModal }) => {
   return (
-    <div className="container">
-      {/* 1. Hero Breaking News Banner */}
+    <div>
       <HeroBanner />
-
-      {/* 2. Category Navigation Strip */}
-      <CategoryPills />
-
-      {/* 3. Main 3-Column Layout */}
-      <div className="main-grid">
-        {/* Left Column: Latest News (সর্বশেষ খবর) */}
-        <LatestNewsList />
-
-        {/* Center Column: Featured News Cards (ছাত্রদের নতুন কর্মসূচি & পদ্মা সেতু) */}
-        <FeaturedNewsCards />
-
-        {/* Right Column: Widgets (Weather, Popular News, Newsletter) */}
-        <div className="right-column">
-          <WeatherWidget />
-          <PopularNewsWidget />
-          <NewsletterWidget />
-        </div>
+      <StatsSection />
+      <div id="nobigonj-places">
+        <TopPlaces />
       </div>
-
-      {/* 4. Bottom Grid: More News (আরও খবর) */}
-      <MoreNewsSection />
+      <section className="news-section" id="hello-nobigonj">
+        <div className="container">
+          <NewsSection />
+          <Sidebar onOpenModal={onOpenModal} />
+        </div>
+      </section>
+      <CategoryNews />
     </div>
   )
 }
+
+export default HomePage
